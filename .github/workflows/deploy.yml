@@ -38,7 +38,7 @@ jobs:
 
       - name: Start Calculator on EC2
         run: |
-          ssh -i ~/.ssh/meinPrivateKey ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
+          ssh -t -o ServerAliveInterval=60 -i ~/.ssh/meinPrivateKey ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
             nohup sudo serve -l 8080 -s ~/build & disown
           ENDSSH
 
