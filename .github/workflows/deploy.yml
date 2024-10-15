@@ -40,6 +40,8 @@ jobs:
             nohup sudo serve -l 80 -s ~/build &
           ENDSSH
 
+          
+
 # sudo serve -l 80 -s ~/build
 # Dieser Befehl startet den serve-Prozess im Vordergrund.
 # Der Server läuft nur so lange, wie die SSH-Sitzung aktiv ist.
