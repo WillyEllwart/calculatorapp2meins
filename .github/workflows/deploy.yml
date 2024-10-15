@@ -18,7 +18,7 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{secrets.SSH_KEY}}" > ~/.ssh/meinPrivateKey
+          echo "${{secrets.SSH_PRIVATEKEY}}" > ~/.ssh/meinPrivateKey
           chmod 600 ~/.ssh/meinPrivateKey
           ssh-keyscan -H ${{secrets.EC2_IP}} >> ~/.ssh/known_hosts
 
@@ -40,7 +40,7 @@ jobs:
             nohup sudo serve -l 80 -s ~/build &
           ENDSSH
 
-          
+
 
 # sudo serve -l 80 -s ~/build
 # Dieser Befehl startet den serve-Prozess im Vordergrund.
