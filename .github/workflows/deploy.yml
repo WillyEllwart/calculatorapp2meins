@@ -21,6 +21,8 @@ jobs:
           echo "${{secrets.SSH_PRIVATEKEY}}" > ~/.ssh/meinPrivateKey
           chmod 600 ~/.ssh/meinPrivateKey
           ssh-keyscan -H ${{secrets.EC2_IP}} >> ~/.ssh/known_hosts
+          ENDSSH
+
 
       - name: SSH Connection
         run: |
