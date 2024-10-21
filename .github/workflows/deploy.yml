@@ -51,7 +51,7 @@ jobs:
       - name: Start Docker Container on EC2 instance
         run: |
             ssh -i ~/.ssh/meinNeuerKey ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
-                docker run -d -p 80:3000 --name calculatorapp2 "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins
+                docker run -d -p 80:3000 --name calculatorapp2meins "${{secrets.DOCKERHUB_USERNAME}}"/calculatorapp2meins
             ENDSSH
 
       - name: Clean Up SSH Key File
