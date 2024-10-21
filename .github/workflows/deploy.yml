@@ -39,6 +39,8 @@ jobs:
         run: |
         
           ssh -i ~/.ssh/meinNeuerKey -o StrictHostKeyChecking=no ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
+
+              sudo yum install -y docker
               sudo yum update -y
               sudo yum upgrade -y
               sudo systemctl start docker 
