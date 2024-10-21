@@ -28,10 +28,12 @@ jobs:
 
       - name: Set up SSH
         run: |
+          set -x
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY}}" > ~/.ssh/meinPrivateKey
           chmod 600 ~/.ssh/meinPrivateKey
           ssh-keyscan -H ${{secrets.EC2_IP}} >> ~/.ssh/known_hosts
+          set +x
 
       - name: SSH Connection to EC2 instance
         run: |
@@ -48,7 +50,7 @@ jobs:
       - name: Start Docker Container on EC2 instance
         run: |
             ssh -i ~/.ssh/meinPrivateKey ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
-                docker run -d -p 80:3000 --name calculatorapp2 "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins
+                docker run -d -p 3000:3000 --name calculatorapp2 "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins
             ENDSSH
 
       - name: Clean Up SSH Key File
