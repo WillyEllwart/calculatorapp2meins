@@ -55,7 +55,7 @@ jobs:
             ssh -i ~/.ssh/meinNeuerKey ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
                 docker stop calculatorapp2meins || true
                 docker rm calculatorapp2meins || true
-                docker run -d -p 80:80 --name calculatorapp2meins "${{secrets.DOCKERHUB_USERNAME}}"/calculatorapp2meins
+                docker run -d -p 80:3001 --name calculatorapp2meins "${{secrets.DOCKERHUB_USERNAME}}"/calculatorapp2meins
             ENDSSH
 
       - name: Clean Up SSH Key File
