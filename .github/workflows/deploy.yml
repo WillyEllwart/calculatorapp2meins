@@ -14,14 +14,14 @@ jobs:
 
       - name: 
         run: |
-          docker build -t "${{secrets.DOCKERHUB_USERNAME}}"/calculatorapp2:latest
+          docker build -t "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins:latest
 
       - name: Docker Login
         run: echo "${{secrets.DOCKERHUB_TOKEN}}" | docker login -u "${{secrets.DOCKERHUB_USERNAME}}" --password-stdin
 
       - name: Docker Push
         run: |
-          docker push "${{secrets.DOCKERHUB_USERNAME}}"/calculatorapp2:latest
+          docker push "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins:latest
 
 
           
@@ -40,14 +40,14 @@ jobs:
               sudo yum upgrade -y
               sudo systemctl start docker
               sudo usermod -aG docker ec2-user
-              docker pull "${{secrets.DOCKERHUB_USERNAME}}"/calculatorapp2:latest
+              docker pull "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins:latest
 
           ENDSSH
 
       - name: Start Docker Container on EC2 instance
         run: |
             ssh -i ~/.ssh/meinPrivateKey ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
-                docker run -d -p 80:3000 --name calculatorapp2 "${{secrets.DOCKERHUB_USERNAME}}"/calculatorapp2
+                docker run -d -p 80:3000 --name calculatorapp2 "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins
             ENDSSH
 
       - name: Clean Up SSH Key File
