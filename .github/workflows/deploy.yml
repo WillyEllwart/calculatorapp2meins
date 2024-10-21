@@ -38,7 +38,8 @@ jobs:
           ssh -i ~/.ssh/meinPrivateKey ec2-user@${{secrets.EC2_IP}} << 'ENDSSH'
               sudo yum update -y
               sudo yum upgrade -y
-              sudo systemctl start docker
+              sudo systemctl start docker -y
+              sudo systemctl enable docker.service
               sudo usermod -aG docker ec2-user
               docker pull "${{secrets.DOCKERHUB_USERNAME}}"/calculatorappmeins:latest
 
